@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.urvanov.examples</groupId>
+    <artifactId>yui-compressor-example</artifactId>
+    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>yui-compressor-example Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <pluginRepositories>
+        <pluginRepository>
+            <name>oss.sonatype.org</name>
+            <id>oss.sonatype.org</id>
+            <url>http://oss.sonatype.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <build>
+        <finalName>yui-compressor-example</finalName>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compress</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <!-- Check files -->
+                            <goal>jslint</goal>
+                            <!-- Compress files -->
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <!-- Compressed files will be put in. -->
+                    <webappDirectory>${project.build.directory}/yui-compressed</webappDirectory>
+                    <encoding>UTF-8</encoding>
+                    <!-- Force to override compressed files if they already exist. -->
+                    <force>true</force>
+                    <aggregations>
+                        <aggregation>
+                            <!-- insert new line after each concatenation 
+                                (default: false) -->
+                            <insertNewLine>true</insertNewLine>
+                            <!-- Aggregated file will be in target/application.js -->
+                            <output>${project.build.directory}/application.js</output>
+                            <!-- files to include, path relative to output's 
+                                directory -->
+                            <includes>
+                                <include>yui-compressed/resources/js/**/*.js</include>
+                            </includes>
+                        </aggregation>
+                    </aggregations>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- Exclude all from resources/js -->
+                    <warSourceExcludes>resources/js/**</warSourceExcludes>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>${project.build.directory}/</directory>
+                            <!-- Include application.js into war. -->
+                            <includes>
+                                <include>application.js</include>
+                            </includes>
+                            <!-- application.js destination. -->
+                            <targetPath>resources/js</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
