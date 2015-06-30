@@ -3,7 +3,6 @@ package ru.urvanov.javaexamples.jasperreportscharttheme;
 import net.sf.jasperreports.charts.ChartTheme;
 import net.sf.jasperreports.charts.ChartThemeBundle;
 
-
 public class MyChartThemeBundle implements ChartThemeBundle {
 
     public MyChartThemeBundle() {
@@ -11,14 +10,15 @@ public class MyChartThemeBundle implements ChartThemeBundle {
     }
 
     @Override
-    public ChartTheme getChartTheme(String arg0) {
-        return new MyChartTheme();
+    public ChartTheme getChartTheme(String chartThemeName) {
+        if (chartThemeName.equals("myTheme"))
+            return new MyChartTheme();
+        throw new IllegalArgumentException();
     }
 
     @Override
     public String[] getChartThemeNames() {
-        return new String[]{"myTheme"};
+        return new String[] { "myTheme" };
     }
 
 }
-

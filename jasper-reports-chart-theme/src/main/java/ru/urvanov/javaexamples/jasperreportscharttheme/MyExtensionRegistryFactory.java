@@ -10,10 +10,6 @@ import net.sf.jasperreports.extensions.ExtensionsRegistry;
 public class MyExtensionRegistryFactory implements
         net.sf.jasperreports.extensions.ExtensionsRegistryFactory {
 
-    public MyExtensionRegistryFactory() {
-        // TODO Auto-generated constructor stub
-    }
-
     @Override
     public ExtensionsRegistry createRegistry(String arg0, JRPropertiesMap arg1) {
         return new ExtensionsRegistry() {
