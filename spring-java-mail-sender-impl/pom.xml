@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.urvanov.javaexamples</groupId>
-    <artifactId>spring-java-mail-sender-impl-mail-ru</artifactId>
+    <artifactId>spring-java-mail-sender-impl</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -59,7 +59,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.urvanov.javaexamples.springjavamailsenderimplmailru.App</mainClass>
+                            <mainClass>ru.urvanov.javaexamples.springjavamailsenderimpl.App</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>data/lib/</classpathPrefix>
                         </manifest>

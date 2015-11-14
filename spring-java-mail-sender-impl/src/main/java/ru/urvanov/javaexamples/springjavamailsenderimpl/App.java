@@ -1,4 +1,4 @@
-package ru.urvanov.javaexamples.springjavamailsenderimplmailru;
+package ru.urvanov.javaexamples.springjavamailsenderimpl;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.mail.MailException;
@@ -6,10 +6,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 /**
- * Пример отправки писем с помощью JavaMailSenderImpl через почтовый
- * сервис mail.ru. Убедитесь, что вы заменили mail.username, mail.password
- * и mail.from в src/main/resources/mail.properties на настройки своей учётной
- * записи почты.
+ * Пример отправки писем с помощью JavaMailSenderImpl через почтовые
+ * сервис mail.ru и gmail.com. Убедитесь, что вы заменили mail.username, mail.password
+ * и mail.from в файле конфигурации (src/main/resources/mail.ru.properties или
+ * в src/main/resources/gmail.com.properties, смотря что включено 
+ * в applicationContext.xml)
+ *  на настройки своей учётной записи почты.
  * 
  * @author Urvanov Fedor
  *  <p><a href="http://urvanov.ru">http://urvanov.ru</a>
