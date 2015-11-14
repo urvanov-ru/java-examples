@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Настройки почтового сервера храним в файлв src/main/resources/mail.properties -->
+    <!-- Убедитесь, что вы заменили mail.username, mail.password
+    и mail.from в src/main/resources/mail.properties на настройки своей учётной
+    записи почты.-->
+    <context:property-placeholder location="classpath:mail.properties"
+        ignore-unresolvable="true" />
+    
+    <!-- Класс для отправки писем. -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtps.auth">${mail.smtps.auth}</prop>
+            </props>
+        </property>
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        <property name="protocol" value="${mail.protocol}" />
+    </bean>
+    
+    <!-- Шаблон письма -->
+    <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="${mail.from}" />
+        <property name="subject" value="Mail subject" />
+    </bean>
+    
+
+</beans>
