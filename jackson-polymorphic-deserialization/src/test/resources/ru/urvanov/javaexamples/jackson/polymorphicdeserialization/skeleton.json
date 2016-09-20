@@ -1,0 +1,5 @@
+{
+    "@class": "ru.urvanov.javaexamples.jackson.polymorphicdeserialization.Skeleton",
+    "health":100,
+    "bones":99
+}

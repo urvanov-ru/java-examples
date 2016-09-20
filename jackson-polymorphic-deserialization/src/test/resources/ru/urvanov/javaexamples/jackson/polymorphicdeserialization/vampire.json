@@ -1,0 +1,5 @@
+{
+    "@class": "ru.urvanov.javaexamples.jackson.polymorphicdeserialization.Vampire",
+    "health":50,
+    "bloodCollected":999
+}
