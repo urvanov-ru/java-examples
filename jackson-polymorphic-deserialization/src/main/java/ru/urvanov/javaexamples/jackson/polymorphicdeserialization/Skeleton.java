@@ -1,6 +1,7 @@
 package ru.urvanov.javaexamples.jackson.polymorphicdeserialization;
 
 public class Skeleton extends Monster {
+    
     private int bones;
 
     public int getBones() {

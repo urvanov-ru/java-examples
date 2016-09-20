@@ -12,6 +12,4 @@ public class Vampire extends Monster {
         this.bloodCollected = bloodCollected;
     }
     
-    
-
 }

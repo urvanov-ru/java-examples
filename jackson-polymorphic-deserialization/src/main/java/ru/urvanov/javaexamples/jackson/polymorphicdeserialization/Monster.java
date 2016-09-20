@@ -15,5 +15,4 @@ public abstract class Monster {
         this.health = health;
     }
     
-    
 }

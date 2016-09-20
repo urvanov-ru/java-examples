@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Unit test for simple App.
  */
@@ -28,29 +29,35 @@ public class AppTest {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             objectMapper.writeValue(byteArrayOutputStream, skeleton);
 
-            String expectedJson = new String(
-                    Files.readAllBytes(Paths
-                            .get("src/test/resources/ru/urvanov/javaexamples/jackson/polymorphicdeserialization/skeleton.json")),
+            String expectedJson = new String(Files.readAllBytes(
+                    Paths.get("src/test/resources/ru/urvanov/javaexamples"
+                            + "/jackson/polymorphicdeserialization"
+                            + "/skeleton.json")),
                     "utf-8");
 
-            assertJsonEquals(expectedJson, byteArrayOutputStream.toString("utf-8"));
+            assertJsonEquals(expectedJson,
+                    byteArrayOutputStream.toString("utf-8"));
         }
     }
 
     @Test
     public void jsonSkeletonDeserializationTest() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/test/resources/ru/urvanov/javaexamples/jackson/polymorphicdeserialization/skeleton.json")), "utf-8");
-        
-        try (InputStream inputStream = new ByteArrayInputStream(jsonString.getBytes("utf-8"))) {
+
+        String jsonString = new String(Files.readAllBytes(
+                Paths.get("src/test/resources/ru/urvanov/javaexamples"
+                        + "/jackson/polymorphicdeserialization"
+                        + "/skeleton.json")),
+                "utf-8");
+
+        try (InputStream inputStream = new ByteArrayInputStream(
+                jsonString.getBytes("utf-8"))) {
             Object object = objectMapper.readValue(inputStream, Monster.class);
             assertTrue(object instanceof Skeleton);
             Skeleton skeleton = (Skeleton) object;
             assertEquals(100, skeleton.getHealth());
             assertEquals(99, skeleton.getBones());
         }
-        
     }
 
     @Test
@@ -62,29 +69,35 @@ public class AppTest {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             objectMapper.writeValue(byteArrayOutputStream, vampire);
 
-            String expectedJson = new String(
-                    Files.readAllBytes(Paths
-                            .get("src/test/resources/ru/urvanov/javaexamples/jackson/polymorphicdeserialization/vampire.json")),
+            String expectedJson = new String(Files.readAllBytes(
+                    Paths.get("src/test/resources/ru/urvanov/javaexamples"
+                            + "/jackson/polymorphicdeserialization/"
+                            + "vampire.json")),
                     "utf-8");
 
-            assertJsonEquals(expectedJson, byteArrayOutputStream.toString("utf-8"));
+            assertJsonEquals(expectedJson,
+                    byteArrayOutputStream.toString("utf-8"));
         }
     }
 
     @Test
     public void jsonVampireDeserializationTest() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        
-        String jsonString = new String(Files.readAllBytes(Paths.get("src/test/resources/ru/urvanov/javaexamples/jackson/polymorphicdeserialization/vampire.json")), "utf-8");
-        
-        try (InputStream inputStream = new ByteArrayInputStream(jsonString.getBytes("utf-8"))) {
+
+        String jsonString = new String(Files.readAllBytes(
+                Paths.get("src/test/resources/ru/urvanov/javaexamples"
+                        + "/jackson/polymorphicdeserialization"
+                        + "/vampire.json")),
+                "utf-8");
+
+        try (InputStream inputStream = new ByteArrayInputStream(
+                jsonString.getBytes("utf-8"))) {
             Object object = objectMapper.readValue(inputStream, Monster.class);
             assertTrue(object instanceof Vampire);
             Vampire vampire = (Vampire) object;
             assertEquals(50, vampire.getHealth());
             assertEquals(999, vampire.getBloodCollected());
         }
-        
     }
 
 }
